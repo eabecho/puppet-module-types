@@ -260,6 +260,60 @@ describe 'types' do
 
   end
 
+  context 'with yumrepo specified as a hash' do
+    let(:facts) { { :osfamily => 'RedHat' } }
+    let :params do
+      {
+        :yumrepo_hiera_merge => 'false',
+        :yumrepo => {
+          'test1' => {
+            'baseurl' => 'http://baseurl.com/',
+            'descr' => 'Test 1'
+          },
+          'test2' => {
+            'baseurl' => 'http://baseurl.com/',
+            'descr' => 'Test 2'
+          },
+          'test3' => {
+            'baseurl' => 'http://baseurl.com/',
+            'descr' => 'Test 2',
+            'enabled' => 'true',
+            'gpgcakey' => 'abcdefg',
+            'gpgcheck' => 'true',
+            'gpgkey'=> 'asdf',
+            'mirrorlist' => 'http://a.com/b/c/',
+            'proxy' => 'proxy1',
+            'proxy_password' => 'proxy_password',
+            'proxy_username' => 'proxy_username',
+          },
+        },
+      }
+    end
+
+    it { should contain_class('types') }
+
+    it {
+      should contain_yumrepo('test1').with({
+        'baseurl'  => 'http://baseurl.com/',
+        'descr' => 'Test 1',
+      })
+    }
+
+    it {
+      should contain_yumrepo('test2').with({
+        'baseurl'  => 'http://baseurl.com/',
+        'descr' => 'Test 2',
+      })
+    }
+
+    it {
+      should contain_yumrepo('test3').with({
+        'baseurl'  => 'http://baseurl.com/',
+        'descr' => 'Test 3',
+      })
+    }
+  end
+
   context 'with mounts specified as an invalid type' do
     let(:params) { { :mounts => ['not','a','hash'] } }
 

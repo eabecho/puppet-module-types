@@ -108,6 +108,18 @@ Boolean to control merges of all found instances of types::services in Hiera. Th
 
 - *Default*: true
 
+yumrepo
+------
+Hash of resource type `yumrepo`.
+
+- *Default*: undef
+
+yumrepo_hiera_merge
+------------------
+Boolean to control merges of all found instances of types::yumrepo in Hiera. This is useful for specifying package resources at different levels of the hierarchy and having them all included in the catalog.
+
+- *Default*: true
+
 ===
 
 # Defines
@@ -331,4 +343,13 @@ types::services:
   tailored_firewalls:
     ensure: 'true'
     enable: 'true'
+</pre>
+
+## yumrepo
+<pre>
+types::yumrepo:
+  baseurl: "https://dl.fedoraproject.org/pub/epel/$releasever/$basearch"
+  descr: "EPEL"
+  ensure: 'present'
+  gpgcheck: 'false'
 </pre>
