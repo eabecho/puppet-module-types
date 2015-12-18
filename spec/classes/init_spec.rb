@@ -301,8 +301,7 @@ describe 'types' do
 
     it {
       should contain_yumrepo('test2').with({
-        'baseurl'  => 'http://baseurl.com/',
-        'descr' => 'Test 2',
+        'ensure' => 'absent',
       })
     }
 
@@ -310,6 +309,16 @@ describe 'types' do
       should contain_yumrepo('test3').with({
         'baseurl'  => 'http://baseurl.com/',
         'descr' => 'Test 3',
+        'baseurl' => 'http://baseurl.com/',
+        'descr' => 'Test 2',
+        'enabled' => 'true',
+        'gpgcakey' => 'abcdefg',
+        'gpgcheck' => 'true',
+        'gpgkey'=> 'asdf',
+        'mirrorlist' => 'http://a.com/b/c/',
+        'proxy' => 'proxy1',
+        'proxy_password' => 'proxy_password',
+        'proxy_username' => 'proxy_username',
       })
     }
   end

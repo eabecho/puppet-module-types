@@ -268,6 +268,12 @@ Valid values are 'true', 'false', 'manual'.
 
 `binary`, `control`, `hasrestart`, `hasstatus`, `manifest`, `path`, `pattern`, `provider`, `restart`, `start`, `status`, `stop`
 
+## `types::yumrepo`
+
+### Optional parameters. See [type reference](http://docs.puppetlabs.com/references/stable/type.html#yumrepo) for more information.
+
+`baseurl`, `descr`, `enabled`, `gpgcheck`, `gpgkey`, `mirrorlist`, `proxy`, `proxy_password`, `proxy_username`
+
 ===
 
 # Hiera
@@ -348,8 +354,8 @@ types::services:
 ## yumrepo
 <pre>
 types::yumrepo:
-  baseurl: "https://dl.fedoraproject.org/pub/epel/$releasever/$basearch"
-  descr: "EPEL"
-  ensure: 'present'
-  gpgcheck: 'false'
+  epel:
+    baseurl: "https://dl.fedoraproject.org/pub/epel/$releasever/$basearch"
+    descr: "EPEL"
+    gpgcheck: 'false'
 </pre>
